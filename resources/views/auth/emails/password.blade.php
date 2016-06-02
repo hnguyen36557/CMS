@@ -1,0 +1,1 @@
+Follow the link: {{ route('auth.password.reset', $token) }}
