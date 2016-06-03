@@ -4,12 +4,15 @@ namespace App\Presenters;
 
 use Lewis\Presenter\AbstractPresenter;
 use League\CommonMark\CommonMarkConverter;
+
 class PostPresenter extends AbstractPresenter
 {
-    public function __construct($object, CommonMarkConverter $markdown)
+    protected $markdown;
+    public function __construct($object,CommonMarkConverter $markdown)
     {
         $this->markdown = $markdown;
         parent::__construct($object);
+
     }
 
     public function excerptHtml() {
@@ -20,11 +23,15 @@ class PostPresenter extends AbstractPresenter
         return $this->body ? $this->markdown->convertToHtml($this->body) : null;
     }
 
+    /**
+     *
+     */
     public function publishedDate() {
         if($this->published_at) {
             return $this->published_at->toFormattedDateString();
+        } else {
+            return "not published";
         }
-        return 'Not Published';
     }
 
     public function publishedHighlight() {

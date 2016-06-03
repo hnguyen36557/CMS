@@ -3,15 +3,35 @@
 namespace App\Presenters;
 
 use Lewis\Presenter\AbstractPresenter;
+use League\CommonMark\CommonMarkConverter;
 
-class PagePresenter extends AbstractPresenter
+class PagePrensenter extends AbstractPresenter
 {
-//    public function prettyUri() {
-//        return '/'.ltrim($this->uri, '/');
-//    }
+    protected $markdown;
+    public function __construct($object,CommonMarkConverter $markdown)
+    {
+        $this->markdown = $markdown;
+        parent::__construct($object);
+
+    }
+
+    public function contentHtml() {
+        return $this->markdown->convertToHtml($this->content);
+    }
+
+    public  function uriWildcard() {
+        return $this->uri.'*';
+    }
+    public function prettyUri() {
+       return '/'.ltrim($this->uri, '/');
+    }
 
     public function linkToPaddedTitle($link){
         $padding = str_repeat('&nbsp;', $this->depth * 4);
         return $padding.link_to($link, $this->title);
+    }
+
+    public function PaddedTitle(){
+        return str_repeat('&nbsp;', $this->depth * 4).$this->title;
     }
 }

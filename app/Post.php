@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $fillable = ['author_id', 'title', 'slug', 'body', 'excerpt', 'published_at'];
 
-    protected $dates = ['publised_at'];
+    protected $dates = ['published_at'];
 
     public function setPublishedAtAttibute($value) {
         $this->attributes['published_at'] = $value ?: null;

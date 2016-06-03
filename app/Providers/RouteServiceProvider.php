@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -57,5 +58,14 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require app_path('Http/routes.php');
         });
+
+        foreach(Page::all() as $page) {
+            $router->get($page->uri, ['as' => $page->name, function () use ($page, $router) {
+                return $this->app->call('App\Http\Controllers\PageController@show', [
+                    'page' => $page,
+                    'parameters' => $router->current()->parameters()
+                ]);
+            }]);
+        }
     }
 }

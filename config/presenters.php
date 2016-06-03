@@ -13,6 +13,8 @@ return [
     | the class names and not actual instances.
     |
     */
-//    App\Page::class => App\Presenters\PagePresenter::class,
-   App\Post::class => App\Presenters\PostPresenter::class,
+    App\Page::class => App\Presenters\PagePrensenter::class,
+    App\Post::class => App\Presenters\PostPresenter::class,
+    App\User::class => App\Presenters\UserPrensenter::class
+
 ];

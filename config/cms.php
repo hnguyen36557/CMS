@@ -7,6 +7,6 @@ return [
 	],
 
 	'templates' => [
-		'page' => App\Templates\PageTemplate::class
+		'home' => App\Templates\HomeTemplate::class
 	]
 ];

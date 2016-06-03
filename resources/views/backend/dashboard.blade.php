@@ -15,7 +15,7 @@
                             </a>
                         </h4>
 
-                        {{--{!! $post->excerpt_html !!}--}}
+                        {!! $post->excerpt_html !!}
                     </li>
                 @endforeach
             </ul>
@@ -25,9 +25,7 @@
                 @foreach($users as $user)
                     <li class="list-group-item">
                         <h4>{{ $user->name }}</h4>
-                        {{ $user->last_login_at }}
-
-                        {{--{!! $post->excerpt_html !!}--}}
+                        Last Login {{ $user->last_login_difference }}
                     </li>
                 @endforeach
             </ul>
